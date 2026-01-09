@@ -14,6 +14,7 @@
             --cor-primaria: #e60000; 
             --cor-fundo-dark: #0a0a0a;
             --cor-texto: #FFFFFF;
+            --cor-twitch: #9146FF;
             --font-titulo: 'Bebas Neue', sans-serif;
             --font-corpo: 'Inter', sans-serif;
         }
@@ -55,7 +56,6 @@
         nav ul li a { color: white; font-size: 1.3em; text-decoration: none; transition: 0.3s; font-family: var(--font-titulo); }
         nav ul li a:hover { color: var(--cor-primaria); }
 
-        /* HERO - TÍTULO EM BRANCO PURO */
         #hero-section {
             min-height: 50vh;
             display: grid;
@@ -68,23 +68,64 @@
         .hero-text h1 {
             font-size: clamp(4em, 10vw, 7.5em);
             margin: 0;
-            font-style: normal; /* Normal */
-            color: #FFFFFF; /* Branco Puro */
-            text-shadow: none; /* Sem sombras/réplicas */
+            font-style: normal;
+            color: #FFFFFF;
             line-height: 0.85;
         }
 
+        /* CONTAINER DO VIDEO/TWITCH */
         .hero-video {
             width: 100%;
-            background: #000;
             aspect-ratio: 16/9;
             border: 1px solid rgba(230, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .twitch-container {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* ZONA BRANCA DE NOTÍCIAS */
+        .twitch-container .bg-offline {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5; /* Escurece para o botão destacar */
+        }
+
+        .btn-twitch {
+            position: absolute;
+            background-color: var(--cor-twitch);
+            color: white;
+            text-decoration: none;
+            font-family: var(--font-titulo);
+            font-size: 1.4em;
+            padding: 12px 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .btn-twitch:hover {
+            background-color: #a970ff;
+            transform: scale(1.05);
+        }
+
+        .twitch-icon {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* ZONA DE NOTÍCIAS */
         #news-section-bg {
             background-color: #FFFFFF;
             padding: 60px 5% 80px 5%;
@@ -92,11 +133,7 @@
             text-align: center;
         }
 
-        #news-section-bg h2 {
-            color: #000;
-            font-size: 3em;
-            margin-bottom: 40px;
-        }
+        #news-section-bg h2 { color: #000; font-size: 3em; margin-bottom: 40px; }
 
         .news-card-mini {
             max-width: 500px;
@@ -109,68 +146,20 @@
             transition: transform 0.3s ease;
         }
 
-        .news-card-mini:hover {
-            transform: translateY(-5px);
-        }
+        .news-card-mini:hover { transform: translateY(-5px); }
 
-        .news-image-container {
-            width: 100%;
-            height: 240px;
-            overflow: hidden;
-            background: #1a1a1a;
-        }
+        .news-image-container { width: 100%; height: 240px; overflow: hidden; background: #1a1a1a; }
+        .news-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+        .news-card-mini:hover img { transform: scale(1.1); }
 
-        .news-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            display: block;
-        }
-
-        .news-card-mini:hover img {
-            transform: scale(1.1);
-        }
-
-        .news-content {
-            padding: 25px;
-            color: #000;
-        }
-
-        .news-tag {
-            color: var(--cor-primaria);
-            font-size: 0.9em;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .news-content h3 {
-            font-size: 2.2em;
-            margin: 0 0 10px 0;
-            line-height: 1;
-        }
-
-        .news-date {
-            font-size: 0.75em;
-            color: #999;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .news-content p {
-            font-size: 1em;
-            color: #444;
-            margin: 0;
-            line-height: 1.5;
-        }
+        .news-content { padding: 25px; color: #000; }
+        .news-tag { color: var(--cor-primaria); font-size: 0.9em; display: block; margin-bottom: 8px; }
+        .news-content h3 { font-size: 2.2em; margin: 0 0 10px 0; line-height: 1; }
+        .news-date { font-size: 0.75em; color: #999; font-weight: 700; display: block; margin-bottom: 12px; }
+        .news-content p { font-size: 1em; color: #444; margin: 0; line-height: 1.5; }
 
         /* PLANTEL */
-        #main-content {
-            padding: 40px 5% 100px 5%;
-            text-align: center;
-        }
-
+        #main-content { padding: 40px 5% 100px 5%; text-align: center; }
         .roster-container {
             background-color: rgba(15, 15, 15, 0.9);
             padding: 60px 20px;
@@ -183,19 +172,16 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .player-unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 160px;
-        }
-
+        .player-unit { display: flex; flex-direction: column; align-items: center; width: 160px; }
+        
+        /* FOTOS REDONDAS */
         .player-unit img {
             width: 140px;
             height: 140px;
             border: 3px solid var(--cor-primaria);
             margin-bottom: 15px;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .player-unit h3 { font-size: 1.8em; margin: 0; color: #fff; }
@@ -225,21 +211,27 @@
     <section id="hero-section">
         <div class="hero-text">
             <h1>KAVE NE KADAS</h1>
-            <p>CS2 ORGANIZATION | PORTUGAL</p>
+            <p>TACTICAL CS2 ORGANIZATION | PORTUGAL</p>
         </div>
         <div class="hero-video">
-            <span>[ VÍDEO DE DESTAQUE ]</span>
+            <div class="twitch-container">
+                <img src="offline.png" alt="KNK Offline" class="bg-offline">
+                <a href="https://www.twitch.tv/kavenekadas" target="_blank" class="btn-twitch">
+                    <svg class="twitch-icon" viewBox="0 0 24 24">
+                        <path d="M11.571 4.714h1.715v5.143H11.57V4.714zm4.715 0H18v5.143h-1.714V4.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z"/>
+                    </svg>
+                    SEGUIR NA TWITCH
+                </a>
+            </div>
         </div>
     </section>
 
     <section id="news-section-bg">
         <h2>Notícias Recentes</h2>
-        
         <div class="news-card-mini">
             <div class="news-image-container">
-                <img src="NEW1.jpg" alt="Apresentação KNK">
+                <img src="knk/APRESENTACAO.png" alt="Apresentação KNK">
             </div>
-            
             <div class="news-content">
                 <span class="news-tag">Comunicado Oficial</span>
                 <span class="news-date">9 DE JANEIRO, 2026</span>
@@ -253,27 +245,27 @@
         <h2 style="color: var(--cor-primaria); font-size: 3.5em; margin: 0;">Plantel Ativo</h2>
         <div class="roster-container">
             <div class="player-unit">
-                <img src="avatar.jpg" alt="Edu">
+                <img src="avatar1.jpg" alt="Edu">
                 <h3>Edu-_-</h3>
                 <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
             </div>
             <div class="player-unit">
-                <img src="avatar.jpg" alt="eugenio">
+                <img src="avatar2.jpg" alt="eugenio">
                 <h3>eugenio7a5</h3>
                 <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
             </div>
             <div class="player-unit">
-                <img src="avatar.jpg" alt="h3nq">
+                <img src="avatar3.jpg" alt="h3nq">
                 <h3>h3nq_</h3>
                 <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
             </div>
             <div class="player-unit">
-                <img src="avatar.jpg" alt="rKzeraaa">
+                <img src="avatar4.jpg" alt="rKzeraaa">
                 <h3>rKzeraaa</h3>
                 <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
             </div>
             <div class="player-unit">
-                <img src="avatar.jpg" alt="rmd10">
+                <img src="avatar5.jpg" alt="rmd10">
                 <h3>rmd10</h3>
                 <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
             </div>
@@ -287,5 +279,3 @@
 
 </body>
 </html>
-
-
