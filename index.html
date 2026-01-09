@@ -119,10 +119,29 @@
         /* NEWS SECTION */
         #news-section-bg { background-color: #FFFFFF; padding: 60px 5%; margin: 40px 0; text-align: center; }
         #news-section-bg h2 { color: #000; font-size: 3em; margin-bottom: 40px; }
-        .news-card-mini { max-width: 500px; margin: 0 auto; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: left; }
-        .news-image-container { width: 100%; height: 240px; overflow: hidden; background: #1a1a1a; }
-        .news-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .news-content { padding: 25px; color: #000; }
+        
+        .news-card-mini { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: #fff; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            text-align: left; 
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card-mini:hover { transform: translateY(-5px); }
+
+        .news-image-container { width: 100%; height: 260px; overflow: hidden; background: #1a1a1a; }
+        .news-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .news-card-mini:hover .news-image-container img { transform: scale(1.05); }
+
+        .news-content { padding: 30px; color: #000; }
+        .news-tag { color: var(--cor-primaria); font-size: 1em; display: block; margin-bottom: 5px; font-weight: bold; }
+        .news-date { font-size: 0.8em; color: #999; display: block; margin-bottom: 15px; font-weight: 600; }
+        .news-content h3 { font-size: 2.2em; margin: 0 0 12px 0; line-height: 1.1; color: #000; }
+        .news-content p { font-size: 1em; color: #444; margin: 0; line-height: 1.5; }
 
         /* EQUIPA */
         #main-content { padding: 40px 5% 100px 5%; text-align: center; }
@@ -179,10 +198,10 @@
         <h2>Notícias Recentes</h2>
         <div class="news-card-mini">
             <div class="news-image-container">
-                <img src="NEW1.jpg" alt="Apresentação KNK">
+                <img src="APRESENTACAO.png" alt="Apresentação KNK">
             </div>
             <div class="news-content">
-                <span class="news-tag">Comunicado Oficial</span>
+                <span class="news-tag">Comunicado</span>
                 <span class="news-date">9 DE JANEIRO, 2026</span>
                 <h3>UMA NOVA ETAPA</h3>
                 <p>Anunciamos hoje o início de um capítulo importante na jornada da Kave Ne Kadas.</p>
@@ -242,7 +261,6 @@
 
     <script>
         async function checkTwitchLive() {
-            // Canal para teste. Mudar para 'kavenekadas' em produção.
             const channelName = 'zorlakoka'; 
             const btn = document.getElementById('twitch-live-button');
 
