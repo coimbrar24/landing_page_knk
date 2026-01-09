@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kave Ne Kadas - Organização de E-Sports</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cor-primaria: #e60000; 
+            --cor-fundo-dark: #0a0a0a;
+            --cor-texto: #FFFFFF;
+            --font-titulo: 'Bebas Neue', sans-serif;
+            --font-corpo: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-corpo);
+            background: 
+                radial-gradient(circle at top right, rgba(230, 0, 0, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                var(--cor-fundo-dark);
+            background-attachment: fixed;
+            color: var(--cor-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .news-tag {
+            font-family: var(--font-titulo);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            position: sticky; 
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo img { height: 60px; width: auto; }
+        nav { flex: 2; display: flex; justify-content: center; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin: 0 25px; }
+        nav ul li a { color: white; font-size: 1.3em; text-decoration: none; transition: 0.3s; font-family: var(--font-titulo); }
+        nav ul li a:hover { color: var(--cor-primaria); }
+
+        /* HERO - TÍTULO EM BRANCO PURO */
+        #hero-section {
+            min-height: 50vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 40px 5%;
+            gap: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(4em, 10vw, 7.5em);
+            margin: 0;
+            font-style: normal; /* Normal */
+            color: #FFFFFF; /* Branco Puro */
+            text-shadow: none; /* Sem sombras/réplicas */
+            line-height: 0.85;
+        }
+
+        .hero-video {
+            width: 100%;
+            background: #000;
+            aspect-ratio: 16/9;
+            border: 1px solid rgba(230, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ZONA BRANCA DE NOTÍCIAS */
+        #news-section-bg {
+            background-color: #FFFFFF;
+            padding: 60px 5% 80px 5%;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        #news-section-bg h2 {
+            color: #000;
+            font-size: 3em;
+            margin-bottom: 40px;
+        }
+
+        .news-card-mini {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card-mini:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .news-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: block;
+        }
+
+        .news-card-mini:hover img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 25px;
+            color: #000;
+        }
+
+        .news-tag {
+            color: var(--cor-primaria);
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .news-content h3 {
+            font-size: 2.2em;
+            margin: 0 0 10px 0;
+            line-height: 1;
+        }
+
+        .news-date {
+            font-size: 0.75em;
+            color: #999;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .news-content p {
+            font-size: 1em;
+            color: #444;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* PLANTEL */
+        #main-content {
+            padding: 40px 5% 100px 5%;
+            text-align: center;
+        }
+
+        .roster-container {
+            background-color: rgba(15, 15, 15, 0.9);
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .player-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 160px;
+        }
+
+        .player-unit img {
+            width: 140px;
+            height: 140px;
+            border: 3px solid var(--cor-primaria);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .player-unit h3 { font-size: 1.8em; margin: 0; color: #fff; }
+
+        footer { background: #000; padding: 60px 5%; text-align: center; }
+        .social-link { font-family: var(--font-titulo); color: var(--cor-primaria); text-decoration: none; font-size: 2.2em; }
+
+        @media (max-width: 1100px) {
+            #hero-section { grid-template-columns: 1fr; text-align: center; }
+            .hero-video { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="AVA_KNK.png" alt="KNK"></div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#news-section-bg">Notícias</a></li>
+                <li><a href="#main-content">Equipa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero-section">
+        <div class="hero-text">
+            <h1>KAVE NE KADAS</h1>
+            <p>CS2 ORGANIZATION | PORTUGAL</p>
+        </div>
+        <div class="hero-video">
+            <span>[ VÍDEO DE DESTAQUE ]</span>
+        </div>
+    </section>
+
+    <section id="news-section-bg">
+        <h2>Notícias Recentes</h2>
+        
+        <div class="news-card-mini">
+            <div class="news-image-container">
+                <img src="APRESENTACAO.png" alt="Apresentação KNK">
+            </div>
+            
+            <div class="news-content">
+                <span class="news-tag">Comunicado Oficial</span>
+                <span class="news-date">9 DE JANEIRO, 2026</span>
+                <h3>UMA NOVA ETAPA</h3>
+                <p>Anunciamos hoje o início de um capítulo importante na jornada da Kave Ne Kadas, fica a conhecer os jogadores.</p>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <h2 style="color: var(--cor-primaria); font-size: 3.5em; margin: 0;">Plantel Ativo</h2>
+        <div class="roster-container">
+            <div class="player-unit">
+                <img src="avatar.jpg" alt="Edu">
+                <h3>Edu-_-</h3>
+                <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
+            </div>
+            <div class="player-unit">
+                <img src="avatar.jpg" alt="eugenio">
+                <h3>eugenio7a5</h3>
+                <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
+            </div>
+            <div class="player-unit">
+                <img src="avatar.jpg" alt="h3nq">
+                <h3>h3nq_</h3>
+                <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
+            </div>
+            <div class="player-unit">
+                <img src="avatar.jpg" alt="rKzeraaa">
+                <h3>rKzeraaa</h3>
+                <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
+            </div>
+            <div class="player-unit">
+                <img src="avatar.jpg" alt="rmd10">
+                <h3>rmd10</h3>
+                <p style="color:var(--cor-primaria); font-weight: 900; font-size: 0.7em;">JOGADOR</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="https://www.instagram.com/kavenekadas" target="_blank" class="social-link">INSTAGRAM @KAVENEKADAS</a>
+        <p style="opacity: 0.3; font-size: 0.75em; margin-top: 20px;">&copy; 2026 KAVE NE KADAS.</p>
+    </footer>
+
+</body>
+</html>
