@@ -127,43 +127,23 @@
         .live-dot { width: 8px; height: 8px; background-color: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        .hero-video { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(230, 0, 0, 0.3); background: #000; overflow: hidden; }
-        .hero-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-
-        /* --- NEWS SECTION MODIFICADA PARA CENTRAR --- */
-        #news-section-bg { 
-            background-color: #FFFFFF; 
-            padding: 80px 5%; 
-            margin: 40px 0; 
-            text-align: center; /* Centraliza o título e o conteúdo */
-        }
-        #news-section-bg h2 { 
-            color: #000; 
-            font-size: 3.5em; 
-            margin-bottom: 50px; 
-            display: inline-block; 
-            border-bottom: 6px solid var(--cor-primaria); 
-            padding-bottom: 5px; 
-            line-height: 1; 
-        }
-
-        .news-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 450px)); /* Limita a largura máxima para não esticar demais */
-            gap: 40px; 
-            justify-content: center; /* CENTRA AS NOTÍCIAS */
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .news-card-mini { 
-            background: #fff; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-            border: 1px solid #f0f0f0; 
+        /* AJUSTE PARA O VÍDEO DA TWITCH */
+        .hero-video { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            border: 1px solid rgba(230, 0, 0, 0.3); 
+            background: #000; 
             overflow: hidden; 
-            transition: transform 0.3s ease;
-            text-align: left; /* Mantém o texto dentro do card à esquerda */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
+        .hero-video iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- NEWS SECTION --- */
+        #news-section-bg { background-color: #FFFFFF; padding: 80px 5%; margin: 40px 0; text-align: center; }
+        #news-section-bg h2 { color: #000; font-size: 3.5em; margin-bottom: 50px; display: inline-block; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; line-height: 1; }
+
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 450px)); gap: 40px; justify-content: center; max-width: 1400px; margin: 0 auto; }
+        .news-card-mini { background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; overflow: hidden; transition: transform 0.3s ease; text-align: left; }
         .news-card-mini:hover { transform: translateY(-8px); }
         .news-image-container { width: 100%; height: 260px; overflow: hidden; background: #1a1a1a; }
         .news-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -217,10 +197,13 @@
                 STREAMING
             </a>
             <h1>KAVE NE KADAS</h1>
-            <p>E-SPORTS ORGANIZATION | PORTUGAL</p>
         </div>
+        
         <div class="hero-video">
-            <img src="offline.png" alt="KNK Offline">
+           <iframe 
+    src="https://player.twitch.tv/?video=2670017495&parent=127.0.0.1&parent=localhost&autoplay=false" 
+    allowfullscreen="true">
+</iframe>
         </div>
     </section>
 
