@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kave Ne Kadas</title>
     
+    <link rel="icon" type="image/png" href="AVA_KNK.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -127,7 +129,6 @@
         .live-dot { width: 8px; height: 8px; background-color: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* AJUSTE PARA O VÍDEO DA TWITCH */
         .hero-video { 
             width: 100%; 
             aspect-ratio: 16/9; 
@@ -201,10 +202,10 @@
         </div>
         
         <div class="hero-video">
-           <iframe 
-    src="https://player.twitch.tv/?video=2670017495&parent=127.0.0.1&parent=kavenekadas.vercel.app&autoplay=false" 
-    allowfullscreen="true">
-</iframe>
+            <iframe 
+                src="https://player.twitch.tv/?video=2670017495&parent=127.0.0.1&parent=localhost&parent=kavenekadas.vercel.app&autoplay=false" 
+                allowfullscreen="true">
+            </iframe>
         </div>
     </section>
 
@@ -277,6 +278,4 @@
         setInterval(checkTwitchLive, 120000);
     </script>
 </body>
-</html>
-
-
+</html>s
