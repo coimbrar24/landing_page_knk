@@ -82,24 +82,34 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* MENU MOBILE (Expande apenas o necessário) */
+        /* MENU MOBILE GAVETA */
         .mobile-nav {
             position: fixed;
-            top: -50%; /* Escondido no topo */
+            top: -50%; 
             left: 0; width: 100%; 
             height: auto;
-            min-height: 300px;
             background-color: rgba(0,0,0,0.98);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1500;
-            padding-top: 80px; /* Espaço para o header não cobrir links */
+            padding-top: 100px;
             padding-bottom: 40px;
             border-bottom: 2px solid var(--cor-primaria);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
         .mobile-nav.active { top: 0; }
         .mobile-nav a { color: white; font-family: var(--font-titulo); font-size: 2.2em; text-decoration: none; margin: 10px 0; }
+
+        /* OVERLAY (Fundo escuro para fechar ao clicar fora) */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            opacity: 0; visibility: hidden;
+            transition: 0.4s;
+            z-index: 1400;
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
 
         /* --- HERO SECTION --- */
         #hero-section {
@@ -174,6 +184,8 @@
         </div>
     </header>
 
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
     <nav class="mobile-nav" id="mobileNav">
         <a href="#" onclick="toggleMenu()">Início</a>
         <a href="#news-section-bg" onclick="toggleMenu()">Notícias</a>
@@ -243,9 +255,14 @@
         function toggleMenu() {
             const nav = document.getElementById('mobileNav');
             const toggle = document.getElementById('menuToggle');
+            const overlay = document.getElementById('menuOverlay');
+            
             nav.classList.toggle('active');
             toggle.classList.toggle('active');
-            // Não bloqueia mais o scroll do body para manter a fluidez da gaveta pequena
+            overlay.classList.toggle('active');
+            
+            // Impede scroll apenas se o menu estiver aberto
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
         }
 
         async function checkTwitchLive() {
