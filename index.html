@@ -82,10 +82,10 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* MENU MOBILE GAVETA */
+        /* MENU MOBILE GAVETA (Sem barra vermelha) */
         .mobile-nav {
             position: fixed;
-            top: -50%; 
+            top: -60%; 
             left: 0; width: 100%; 
             height: auto;
             background-color: rgba(0,0,0,0.98);
@@ -93,14 +93,14 @@
             transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1500;
             padding-top: 100px;
-            padding-bottom: 40px;
-            border-bottom: 2px solid var(--cor-primaria);
+            padding-bottom: 50px;
+            border-bottom: none; /* Barra removida aqui */
             backdrop-filter: blur(15px);
         }
         .mobile-nav.active { top: 0; }
         .mobile-nav a { color: white; font-family: var(--font-titulo); font-size: 2.2em; text-decoration: none; margin: 10px 0; }
 
-        /* OVERLAY (Fundo escuro para fechar ao clicar fora) */
+        /* OVERLAY */
         .menu-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -195,8 +195,8 @@
     <section id="hero-section">
         <div class="hero-text">
             <a href="https://www.twitch.tv/kavenekadas" id="twitch-live-button" target="_blank" style="display:none; background:var(--cor-primaria); padding:10px 25px; border-radius:50px; color:white; font-family:var(--font-titulo); text-decoration:none; margin-bottom:20px;">🔴 EM DIRETO</a>
-            <h1>KAVE NE KADAS</h1>
-            <p>E-SPORTS ORGANIZATION | PORTUGAL</p>
+            <h1>KAVE
+            NE KADAS</h1>
         </div>
         <div class="hero-video">
             <iframe src="https://player.twitch.tv/?video=2670017495&parent=kavenekadas.vercel.app&parent=localhost&autoplay=false" allowfullscreen="true"></iframe>
@@ -261,7 +261,6 @@
             toggle.classList.toggle('active');
             overlay.classList.toggle('active');
             
-            // Impede scroll apenas se o menu estiver aberto
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
         }
 
