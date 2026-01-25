@@ -105,23 +105,34 @@
             #hero-section { 
                 grid-template-columns: 1fr; 
                 text-align: center; 
-                padding: 30px 5% 30px 5%; 
+                padding: 30px 5% 15px 5%; /* Menos padding inferior para aproximar notícias */
                 min-height: auto; 
                 gap: 15px;
             }
             .hero-text { order: 2; } 
-            .hero-text h1 { font-size: 2.6em; line-height: 1.1; margin-top: 15px; } /* TAMANHO REDUZIDO AQUI */
+            .hero-text h1 { font-size: 2.6em; line-height: 1.1; margin-top: 15px; } 
             .hero-video { order: 1; width: 100%; } 
             
-            #news-section-bg { padding: 40px 0 50px 0; }
-            #news-section-bg h2 { font-size: 2.4em; margin-bottom: 20px; }
+            /* REDUÇÃO DE MARGENS NAS NOTÍCIAS MOBILE */
+            #news-section-bg { 
+                padding: 20px 0 35px 0; /* Padding superior drasticamente reduzido */
+            }
+            #news-section-bg h2 { 
+                font-size: 2.0em; /* Título ainda mais compacto */
+                margin-bottom: 15px; /* Menos espaço até aos cards */
+            }
 
-            .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 10px 10%; gap: 20px; -webkit-overflow-scrolling: touch; }
+            .news-grid { 
+                display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; 
+                padding: 0 10% 5px 10%; /* Padding inferior mínimo */
+                gap: 20px; -webkit-overflow-scrolling: touch; 
+            }
             .news-grid::-webkit-scrollbar { display: none; }
-            .scroll-indicator-container { display: block; margin-top: 15px; } 
+            .scroll-indicator-container { display: block; margin: 10px auto 0; } /* Barra mais próxima dos cards */
+            
             .news-card-wrapper { min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; }
             .news-image-container { height: 180px; }
-            .news-content h3 { font-size: 1.5em; }
+            .news-content h3 { font-size: 1.4em; }
         }
     </style>
 </head>
