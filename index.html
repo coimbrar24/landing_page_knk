@@ -67,9 +67,12 @@
         .hero-video { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(230, 0, 0, 0.3); background: #000; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .hero-video iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- NOTÍCIAS (DESKTOP) --- */
         #news-section-bg { background-color: #FFFFFF; padding: 80px 0; text-align: center; }
-        #news-section-bg h2 { color: #000; font-size: 3.5em; margin-bottom: 50px; display: inline-block; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; }
+        
+        #news-section-bg h2 { 
+            color: #000; font-size: 3.5em; margin: 0 auto 50px auto; 
+            display: table; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; 
+        }
 
         .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1400px; margin: 0 auto; padding: 0 5%; }
         .news-card-wrapper { text-decoration: none; color: inherit; display: block; height: 100%; }
@@ -87,6 +90,7 @@
         #main-content { padding: 80px 5%; text-align: center; }
         .roster-container { background-color: rgba(15, 15, 15, 0.9); padding: 60px 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
         .player-unit { display: flex; flex-direction: column; align-items: center; width: 160px; }
+        .player-unit h3 { color: #FFFFFF; }
         .player-link { border-radius: 50%; overflow: hidden; width: 140px; height: 140px; border: 3px solid var(--cor-primaria); margin-bottom: 15px; transition: 0.3s; }
         .player-link img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -95,29 +99,15 @@
         .social-link svg { width: 28px; height: 28px; fill: #666; transition: 0.3s; }
         .social-link:hover svg { fill: var(--cor-primaria); }
 
-        /* --- MOBILE --- */
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
-            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 25px 5% 10px 5%; min-height: auto; gap: 10px; }
+            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 20px 5% 10px 5%; min-height: auto; gap: 10px; }
             .hero-text { order: 2; } 
             .hero-text h1 { font-size: 2.4em; line-height: 1; margin-top: 10px; } 
             .hero-video { order: 1; width: 100%; } 
             
-            /* SOLUÇÃO DEFINITIVA DE ALINHAMENTO */
-            section#news-section-bg { 
-                padding: 15px 0 35px 0 !important; 
-                text-align: left !important; /* Força o alinhamento do contentor à esquerda */
-            }
-            
-            #news-section-bg h2 { 
-                font-size: 2.0em !important; 
-                margin: 0 0 15px 10% !important; /* Margem esquerda de 10% para alinhar com cards */
-                padding: 0 !important;
-                display: table !important; 
-                border-bottom: 4px solid var(--cor-primaria) !important;
-                text-align: left !important;
-            }
+            #news-section-bg { padding: 15px 0 35px 0 !important; }
 
             .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 5px 10% !important; gap: 20px; -webkit-overflow-scrolling: touch; }
             .news-grid::-webkit-scrollbar { display: none; }
@@ -166,7 +156,10 @@
     </section>
 
     <section id="news-section-bg">
-        <h2>Notícias</h2>
+        <div class="mobile-title-fix" style="width: 100%; display: flex; flex-direction: column;">
+            <h2 id="mobile-news-h2" style="text-align: left; margin-left: 10%; width: fit-content; border-bottom: 4px solid #e60000; padding-bottom: 5px;">Notícias</h2>
+        </div>
+
         <div class="news-grid" id="newsGrid">
             <div class="news-card-wrapper"><div class="news-card-mini"><div class="news-image-container"><img src="NEW1.jpg"></div><div class="news-content"><span class="news-tag">Comunicado Oficial</span><h3>UMA NOVA ETAPA</h3><p style="color:#888; font-size:0.9em; font-weight:700;">9 DE JANEIRO, 2026</p></div></div></div>
             <a href="resultados.html" class="news-card-wrapper"><div class="news-card-mini"><div class="news-image-container"><img src="NEW2CROP.png"></div><div class="news-content"><span class="news-tag">Notícia</span><h3>Resultados da Semana [11-17 Jan]</h3><p style="color:#888; font-size:0.9em; font-weight:700;">18 DE JANEIRO, 2026</p></div></div></a>
@@ -242,7 +235,7 @@
                 } else {
                     grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
                 }
-            }, 3000); 
+            }, 3000); // 3 SEGUNDOS
         }
 
         grid.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
