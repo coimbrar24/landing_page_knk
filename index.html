@@ -78,7 +78,6 @@
             max-width: 1400px; margin: 0 auto; padding: 0 5%;
         }
 
-        /* Estilo base para todos os cartões */
         .news-card-wrapper { text-decoration: none; color: inherit; display: block; height: 100%; }
         .news-card-mini { 
             background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; 
@@ -113,13 +112,27 @@
             .hero-video { order: 0; }
 
             .news-grid { 
-                display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; 
-                padding: 0 10% 40px 10%; gap: 20px; -webkit-overflow-scrolling: touch;
+                display: flex !important; 
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; 
+                padding: 0 10% 30px 10%; /* Padding inferior para a barra */
+                gap: 20px; 
+                -webkit-overflow-scrolling: touch;
             }
-            .news-grid::-webkit-scrollbar { display: none; }
+            
+            /* INDICATIVO VISUAL (BARRA DE SCROLL) NO MOBILE */
+            .news-grid::-webkit-scrollbar { 
+                height: 4px; /* Barra fininha */
+                display: block; /* Garante que aparece */
+            }
+            .news-grid::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; margin: 0 15%; }
+            .news-grid::-webkit-scrollbar-thumb { background: var(--cor-primaria); border-radius: 10px; }
             
             .news-card-wrapper { 
-                min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; 
+                min-width: 75vw; 
+                max-width: 320px; 
+                scroll-snap-align: center; 
+                flex-shrink: 0; 
             }
             .news-image-container { height: 180px; }
             .news-content h3 { font-size: 1.5em; }
@@ -246,14 +259,12 @@
             } catch (e) {}
         }
 
+        // Funcao para iniciar o scroll no fim (N3) no Mobile
         function scrollToLatest() {
             if (window.innerWidth <= 1000) {
                 const grid = document.getElementById('newsGrid');
                 setTimeout(() => {
-                    grid.scrollTo({
-                        left: grid.scrollWidth,
-                        behavior: 'smooth'
-                    });
+                    grid.scrollLeft = grid.scrollWidth;
                 }, 300);
             }
         }
