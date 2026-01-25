@@ -222,7 +222,7 @@
                 const cardWidth = grid.querySelector('.news-card-wrapper').offsetWidth + 20;
                 const scrollTotal = grid.scrollWidth - grid.clientWidth;
                 
-                if (grid.scrollLeft >= scrollTotal - 5) {
+                if (grid.scrollLeft >= scrollTotal - 3) {
                     // Se estiver no fim, volta para o início
                     grid.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
@@ -253,3 +253,4 @@
     </script>
 </body>
 </html>
+
