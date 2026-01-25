@@ -21,33 +21,16 @@
 
         body {
             font-family: var(--font-corpo);
-            background: 
-                radial-gradient(circle at top right, rgba(230, 0, 0, 0.4) 0%, transparent 60%),
-                radial-gradient(circle at top left, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-                var(--cor-fundo-dark);
-            background-attachment: fixed;
-            color: var(--cor-texto);
-            margin: 0; padding: 0;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            background: radial-gradient(circle at top right, rgba(230, 0, 0, 0.4) 0%, transparent 60%), radial-gradient(circle at top left, rgba(255, 255, 255, 0.15) 0%, transparent 50%), var(--cor-fundo-dark);
+            background-attachment: fixed; color: var(--cor-texto); margin: 0; padding: 0; line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
         }
 
         h1, h2, h3 { font-family: var(--font-titulo); text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- HEADER --- */
         header {
-            padding: 0 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky; 
-            top: 0;
-            height: 80px;
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-            background-color: rgba(0, 0, 0, 0.4);
-            transition: 0.4s ease;
+            padding: 0 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; 
+            top: 0; height: 80px; z-index: 2000; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.4); transition: 0.4s ease;
         }
         header:hover { background-color: #FFFFFF; }
         .logo-wrapper { position: relative; height: 50px; width: 100px; z-index: 2100; }
@@ -70,26 +53,18 @@
         .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
         .mobile-nav {
-            position: fixed; top: -65%; left: 0; width: 100%; height: auto;
-            background-color: rgba(0,0,0,0.98); display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: top 0.5s;
+            position: fixed; top: -65%; left: 0; width: 100%; height: auto; background-color: rgba(0,0,0,0.98); 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; transition: top 0.5s;
             z-index: 1500; padding-top: 100px; padding-bottom: 50px; backdrop-filter: blur(15px);
         }
         .mobile-nav.active { top: 0; }
         .mobile-nav a { color: white; font-family: var(--font-titulo); font-size: 2.2em; text-decoration: none; margin: 10px 0; }
 
-        .menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); opacity: 0; visibility: hidden;
-            transition: 0.4s; z-index: 1400;
-        }
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1400; }
         .menu-overlay.active { opacity: 1; visibility: visible; }
 
-        /* --- HERO SECTION --- */
-        #hero-section {
-            min-height: 85vh; display: grid; grid-template-columns: 1.2fr 1fr;
-            align-items: center; padding: 40px 5%; gap: 50px;
-        }
+        /* --- HERO --- */
+        #hero-section { min-height: 85vh; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; padding: 40px 5%; gap: 50px; }
         .hero-text h1 { font-size: clamp(4em, 8vw, 7.5em); margin: 0; line-height: 0.85; }
         .hero-video { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(230, 0, 0, 0.3); background: #000; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .hero-video iframe { width: 100%; height: 100%; border: none; }
@@ -99,24 +74,22 @@
         #news-section-bg h2 { color: #000; font-size: 3.5em; margin-bottom: 50px; display: inline-block; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; }
 
         .news-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            padding: 0 5%;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; 
+            max-width: 1400px; margin: 0 auto; padding: 0 5%;
         }
 
+        /* Estilo base para todos os cartões */
+        .news-card-wrapper { text-decoration: none; color: inherit; display: block; height: 100%; }
         .news-card-mini { 
-            background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-            border: 1px solid #f0f0f0; overflow: hidden; transition: 0.3s; text-align: left; height: 100%;
+            background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; 
+            overflow: hidden; transition: 0.3s; text-align: left; height: 100%; display: flex; flex-direction: column;
         }
         .news-card-mini:hover { transform: translateY(-8px); }
         .news-image-container { width: 100%; height: 240px; overflow: hidden; background: #1a1a1a; }
-        .news-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .news-content { padding: 25px; color: #000; }
+        .news-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .news-content { padding: 25px; color: #000; flex-grow: 1; }
         .news-tag { color: var(--cor-primaria); font-size: 1em; display: block; margin-bottom: 5px; font-weight: 900; }
-        .news-content h3 { font-size: 1.8em; margin: 0 0 10px 0; line-height: 1.1; }
+        .news-content h3 { font-size: 1.8em; margin: 0 0 10px 0; line-height: 1.1; color: #000; }
 
         /* --- EQUIPA --- */
         #main-content { padding: 80px 5%; text-align: center; }
@@ -131,7 +104,7 @@
         .social-link svg { width: 28px; height: 28px; fill: #666; transition: 0.3s; }
         .social-link:hover svg { fill: var(--cor-primaria); }
 
-        /* --- RESPONSIVIDADE MOBILE --- */
+        /* --- MOBILE CORREÇÕES --- */
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
@@ -139,28 +112,17 @@
             .hero-text { align-items: center; order: 1; }
             .hero-video { order: 0; }
 
-            /* CORREÇÃO DO EFEITO ZOOM / TAMANHO NO MOBILE */
             .news-grid { 
-                display: flex !important; /* Força flex e ignora grid */
-                grid-template-columns: none; 
-                overflow-x: auto; 
-                scroll-snap-type: x mandatory; 
-                padding: 0 10% 40px 10%; 
-                gap: 25px; 
-                -webkit-overflow-scrolling: touch;
+                display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; 
+                padding: 0 10% 40px 10%; gap: 20px; -webkit-overflow-scrolling: touch;
             }
             .news-grid::-webkit-scrollbar { display: none; }
             
-            .news-link-wrapper, .news-card-mini.static-card { 
-                min-width: 280px; /* Largura fixa para evitar zoom/distorção */
-                width: 75vw;
-                max-width: 350px;
-                scroll-snap-align: center; 
-                flex-shrink: 0; 
-                height: auto;
+            .news-card-wrapper { 
+                min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; 
             }
-            .news-image-container { height: 180px; } 
-            .news-content h3 { font-size: 1.4em; }
+            .news-image-container { height: 180px; }
+            .news-content h3 { font-size: 1.5em; }
         }
     </style>
 </head>
@@ -204,32 +166,34 @@
     <section id="news-section-bg">
         <h2>Notícias</h2>
         <div class="news-grid" id="newsGrid">
-            <div class="news-card-mini static-card">
-                <div class="news-image-container"><img src="NEW1.jpg"></div>
-                <div class="news-content">
-                    <span class="news-tag">Comunicado Oficial</span>
-                    <h3>UMA NOVA ETAPA</h3>
-                    <p style="color:#888; font-size:0.9em; font-weight:700;">9 DE JANEIRO, 2026</p>
+            <div class="news-card-wrapper">
+                <div class="news-card-mini">
+                    <div class="news-image-container"><img src="NEW1.jpg"></div>
+                    <div class="news-content">
+                        <span class="news-tag">Comunicado Oficial</span>
+                        <h3>UMA NOVA ETAPA</h3>
+                        <p style="color:#888; font-size:0.9em; font-weight:700;">9 DE JANEIRO, 2026</p>
+                    </div>
                 </div>
             </div>
 
-            <a href="resultados.html" class="news-link-wrapper" style="text-decoration: none; color: inherit;">
+            <a href="resultados.html" class="news-card-wrapper">
                 <div class="news-card-mini">
                     <div class="news-image-container"><img src="NEW2CROP.png"></div>
                     <div class="news-content">
                         <span class="news-tag">Notícia</span>
-                        <h3>Resultados da Semana [12-18 Jan]</h3>
+                        <h3>Resultados da Semana [11-17 Jan]</h3>
                         <p style="color:#888; font-size:0.9em; font-weight:700;">18 DE JANEIRO, 2026</p>
                     </div>
                 </div>
             </a>
 
-            <a href="resultados-atual.html" class="news-link-wrapper" style="text-decoration: none; color: inherit;">
+            <a href="resultados-atual.html" class="news-card-wrapper">
                 <div class="news-card-mini">
                     <div class="news-image-container"><img src="NEW3CROP.png"></div>
                     <div class="news-content">
                         <span class="news-tag">Notícia</span>
-                        <h3>Resultados da Semana [19-25 Jan]</h3>
+                        <h3>Resultados da Semana [18-24 Jan]</h3>
                         <p style="color:#888; font-size:0.9em; font-weight:700;">25 DE JANEIRO, 2026</p>
                     </div>
                 </div>
