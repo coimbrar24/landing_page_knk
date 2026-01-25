@@ -97,19 +97,23 @@
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
-            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 40px 5% 15px 5%; min-height: auto; gap: 15px; }
+            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 30px 5% 15px 5%; min-height: auto; gap: 15px; }
             .hero-text { order: 2; } 
             .hero-text h1 { font-size: 2.6em; line-height: 1.1; margin-top: 15px; } 
             .hero-video { order: 1; width: 100%; } 
             
-            /* ALINHAMENTO ESQUERDA FORÇADO */
-            section#news-section-bg { padding: 20px 0 35px 0 !important; text-align: left !important; }
+            /* Título Alinhado à Esquerda via Flex */
+            #news-section-bg { padding: 15px 0 35px 0 !important; }
             #news-section-bg h2 { 
-                display: block !important; text-align: left !important; font-size: 2.2em !important; 
-                padding-left: 10% !important; margin-bottom: 20px !important; border-bottom: none !important;
-                width: fit-content;
+                display: flex !important; 
+                justify-content: flex-start !important; 
+                text-align: left !important;
+                padding-left: 10% !important; 
+                font-size: 2.2em !important;
+                margin-bottom: 15px !important;
+                border-bottom: none !important;
             }
-            #news-section-bg h2::after { content: ''; display: block; width: 50px; height: 5px; background: var(--cor-primaria); margin-top: 5px; }
+            #news-section-bg h2::after { content: ''; display: block; width: 40px; height: 4px; background: var(--cor-primaria); position: absolute; margin-top: 35px; }
 
             .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 5px 10%; gap: 20px; -webkit-overflow-scrolling: touch; }
             .news-grid::-webkit-scrollbar { display: none; }
