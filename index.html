@@ -148,16 +148,23 @@
             .hero-video { order: 0; }
 
             .news-grid { 
-                display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
-                padding: 0 8% 40px 8%; gap: 20px; -webkit-overflow-scrolling: touch;
+                display: flex; 
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; 
+                padding: 0 10% 40px 10%; 
+                gap: 20px; 
+                -webkit-overflow-scrolling: touch;
             }
-            /* Barra de scroll vermelha fina */
-            .news-grid::-webkit-scrollbar { height: 5px; }
-            .news-grid::-webkit-scrollbar-thumb { background: var(--cor-primaria); border-radius: 10px; }
+            /* Esconde barra padrão para um look mais clean */
+            .news-grid::-webkit-scrollbar { display: none; }
             
             .news-link-wrapper, .news-card-mini.static-card { 
-                min-width: 80vw; scroll-snap-align: center; flex-shrink: 0; 
+                min-width: 75vw; /* Reduzido para tirar a sensação de zoom */
+                scroll-snap-align: center; 
+                flex-shrink: 0; 
             }
+            .news-image-container { height: 200px; } /* Proporção melhor no mobile */
+            .news-content h3 { font-size: 1.5em; }
         }
     </style>
 </head>
@@ -215,7 +222,7 @@
                     <div class="news-image-container"><img src="NEW2CROP.png"></div>
                     <div class="news-content">
                         <span class="news-tag">Notícia</span>
-                        <h3>Resultados da Semana [11-17 Jan]</h3>
+                        <h3>Resultados da Semana [12-18 Jan]</h3>
                         <p style="color:#888; font-size:0.9em; font-weight:700;">18 DE JANEIRO, 2026</p>
                     </div>
                 </div>
@@ -226,7 +233,7 @@
                     <div class="news-image-container"><img src="NEW3CROP.png"></div>
                     <div class="news-content">
                         <span class="news-tag">Notícia</span>
-                        <h3>Resultados da Semana [18-24 Jan]</h3>
+                        <h3>Resultados da Semana [19-25 Jan]</h3>
                         <p style="color:#888; font-size:0.9em; font-weight:700;">25 DE JANEIRO, 2026</p>
                     </div>
                 </div>
@@ -283,7 +290,13 @@
         function scrollToLatest() {
             if (window.innerWidth <= 1000) {
                 const grid = document.getElementById('newsGrid');
-                grid.scrollLeft = grid.scrollWidth;
+                // Pequeno delay para garantir que o layout renderizou
+                setTimeout(() => {
+                    grid.scrollTo({
+                        left: grid.scrollWidth,
+                        behavior: 'smooth'
+                    });
+                }, 300);
             }
         }
 
