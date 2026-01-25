@@ -87,12 +87,11 @@
         .news-tag { color: var(--cor-primaria); font-size: 1em; display: block; margin-bottom: 5px; font-weight: 900; }
         .news-content h3 { font-size: 1.8em; margin: 0 0 10px 0; line-height: 1.1; color: #000; }
 
-        /* BARRA DE SCROLL PERSONALIZADA - CORRIGIDA */
         .scroll-indicator-container { 
             display: none; 
             width: 50%; 
             height: 6px; 
-            background: #e0e0e0; /* Cinza mais visível */
+            background: #e0e0e0; 
             margin: 30px auto 0; 
             border-radius: 10px; 
             position: relative;
@@ -133,7 +132,7 @@
                 -webkit-overflow-scrolling: touch;
             }
             .news-grid::-webkit-scrollbar { display: none; }
-            .scroll-indicator-container { display: block; } /* Ativa a barra no mobile */
+            .scroll-indicator-container { display: block; } 
             
             .news-card-wrapper { 
                 min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; 
@@ -176,7 +175,10 @@
             <h1>KAVE NE KADAS</h1>
         </div>
         <div class="hero-video">
-            <iframe src="https://player.twitch.tv/?video=2670017495&parent=kavenekadas.vercel.app&parent=localhost&autoplay=false" allowfullscreen="true"></iframe>
+            <iframe 
+                src="https://player.twitch.tv/?channel=kavenekadas&parent=kavenekadas.vercel.app&parent=localhost&autoplay=false" 
+                allowfullscreen="true">
+            </iframe>
         </div>
     </section>
 
@@ -270,7 +272,6 @@
         const grid = document.getElementById('newsGrid');
         const scrollBar = document.getElementById('scrollBar');
 
-        // Função para atualizar a barra de progresso
         function updateProgressBar() {
             const scrollTotal = grid.scrollWidth - grid.clientWidth;
             const scrollCurrent = grid.scrollLeft;
@@ -284,7 +285,7 @@
             if (window.innerWidth <= 1000) {
                 setTimeout(() => {
                     grid.scrollLeft = grid.scrollWidth;
-                    updateProgressBar(); // Atualiza a barra após o scroll automático
+                    updateProgressBar(); 
                 }, 400);
             }
         }
