@@ -97,12 +97,15 @@
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
-            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 30px 5% 15px 5%; min-height: auto; gap: 15px; }
+            #hero-section { grid-template-columns: 1fr; text-align: center; padding: 25px 5% 10px 5%; min-height: auto; gap: 15px; }
             .hero-text { order: 2; } 
             .hero-text h1 { font-size: 2.6em; line-height: 1.1; margin-top: 15px; } 
             .hero-video { order: 1; width: 100%; } 
-            #news-section-bg { padding: 20px 0 35px 0; }
-            #news-section-bg h2 { font-size: 2.0em; margin-bottom: 15px; }
+            
+            /* REDUÇÃO DE MARGEM SUPERIOR AQUI */
+            #news-section-bg { padding: 20px 0 40px 0; }
+            #news-section-bg h2 { font-size: 2.2em; margin-bottom: 15px; border-bottom-width: 4px; }
+
             .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 5px 10%; gap: 20px; -webkit-overflow-scrolling: touch; }
             .news-grid::-webkit-scrollbar { display: none; }
             .scroll-indicator-container { display: block; margin: 10px auto 0; }
@@ -216,25 +219,20 @@
             scrollBar.style.width = progress + '%';
         }
 
-        // Função para o scroll automático
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 const cardWidth = grid.querySelector('.news-card-wrapper').offsetWidth + 20;
                 const scrollTotal = grid.scrollWidth - grid.clientWidth;
                 
                 if (grid.scrollLeft >= scrollTotal - 5) {
-                    // Se estiver no fim, volta para o início
                     grid.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
-                    // Senão, avança um card
                     grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
                 }
-            }, 5000);
+            }, 3000);
         }
 
-        // Para o auto-scroll se o utilizador interagir
         grid.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
-
         grid.addEventListener('scroll', updateProgressBar);
 
         function scrollToLatest() {
@@ -242,7 +240,7 @@
                 setTimeout(() => {
                     grid.scrollLeft = grid.scrollWidth;
                     updateProgressBar();
-                    startAutoScroll(); // Inicia o carrossel automático
+                    startAutoScroll();
                 }, 400);
             }
         }
