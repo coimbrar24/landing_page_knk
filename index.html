@@ -102,7 +102,6 @@
         .player-link { border-radius: 50%; overflow: hidden; width: 140px; height: 140px; border: 3px solid var(--cor-primaria); margin-bottom: 15px; transition: 0.3s; }
         .player-link img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- FOOTER --- */
         footer { background: #000; padding: 60px 5%; text-align: center; }
         .social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
         .social-link svg { width: 28px; height: 28px; fill: #666; transition: 0.3s; }
@@ -116,19 +115,37 @@
             #hero-section { 
                 grid-template-columns: 1fr; 
                 text-align: center; 
-                padding: 40px 5% 40px 5%; /* Aumentado o padding superior (topo) */
+                padding: 30px 5% 20px 5%; /* Menos padding inferior no hero */
                 min-height: auto; 
-                gap: 20px; /* Espaço entre vídeo e texto */
+                gap: 15px;
             }
             .hero-text { order: 2; } 
             .hero-text h1 { font-size: 4.5em; line-height: 1; margin-top: 10px; } 
             .hero-video { order: 1; width: 100%; } 
+
+            /* AJUSTES NA SECÇÃO NOTÍCIAS MOBILE */
+            #news-section-bg { 
+                padding: 40px 0 60px 0; /* Margem superior reduzida */
+            }
+            #news-section-bg h2 { 
+                font-size: 2.5em; /* Título menor no mobile */
+                margin-bottom: 25px; /* Menos espaço abaixo do título */
+            }
             
-            .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 10px 10%; gap: 20px; -webkit-overflow-scrolling: touch; }
+            .news-grid { 
+                display: flex !important; 
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; 
+                padding: 0 10% 10px 10%; 
+                gap: 20px; 
+                -webkit-overflow-scrolling: touch;
+            }
             .news-grid::-webkit-scrollbar { display: none; }
-            .scroll-indicator-container { display: block; } 
+            .scroll-indicator-container { display: block; margin-top: 15px; } 
             
-            .news-card-wrapper { min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; }
+            .news-card-wrapper { 
+                min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; 
+            }
             .news-image-container { height: 180px; }
             .news-content h3 { font-size: 1.5em; }
         }
@@ -164,8 +181,7 @@
     <section id="hero-section">
         <div class="hero-text">
             <a href="https://www.twitch.tv/kavenekadas" id="twitch-live-button" target="_blank" style="display:none; background:var(--cor-primaria); padding:8px 20px; border-radius:50px; color:white; font-family:var(--font-titulo); text-decoration:none; margin-bottom:10px; font-size: 0.9em;">🔴 EM DIRETO</a>
-            <h1>KAVE</h1>
-            <h1>NE KADAS</h1>
+            <h1>KAVE NE KADAS</h1>
         </div>
         <div class="hero-video">
             <iframe 
@@ -265,6 +281,7 @@
         const scrollBar = document.getElementById('scrollBar');
 
         function updateProgressBar() {
+            if (!grid || !scrollBar) return;
             const scrollTotal = grid.scrollWidth - grid.clientWidth;
             const scrollCurrent = grid.scrollLeft;
             const progress = (scrollCurrent / scrollTotal) * 100;
