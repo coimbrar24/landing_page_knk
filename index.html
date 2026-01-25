@@ -67,8 +67,15 @@
         .hero-video { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(230, 0, 0, 0.3); background: #000; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .hero-video iframe { width: 100%; height: 100%; border: none; }
 
+        /* --- NEWS SECTION --- */
         #news-section-bg { background-color: #FFFFFF; padding: 80px 0; text-align: center; }
-        #news-section-bg h2 { color: #000; font-size: 3.5em; margin-bottom: 50px; display: inline-block; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; }
+        
+        .news-title-container { width: 100%; text-align: center; } /* Desktop: Centro */
+        
+        #news-section-bg h2 { 
+            color: #000; font-size: 3.5em; margin-bottom: 50px; 
+            display: inline-block; border-bottom: 6px solid var(--cor-primaria); padding-bottom: 5px; 
+        }
 
         .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1400px; margin: 0 auto; padding: 0 5%; }
         .news-card-wrapper { text-decoration: none; color: inherit; display: block; height: 100%; }
@@ -94,6 +101,7 @@
         .social-link svg { width: 28px; height: 28px; fill: #666; transition: 0.3s; }
         .social-link:hover svg { fill: var(--cor-primaria); }
 
+        /* --- MOBILE --- */
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
@@ -102,18 +110,31 @@
             .hero-text h1 { font-size: 2.6em; line-height: 1.1; margin-top: 15px; } 
             .hero-video { order: 1; width: 100%; } 
             
-            /* Título Alinhado à Esquerda via Flex */
-            #news-section-bg { padding: 15px 0 35px 0 !important; }
-            #news-section-bg h2 { 
-                display: flex !important; 
-                justify-content: flex-start !important; 
-                text-align: left !important;
+            /* FORÇAR ALINHAMENTO ESQUERDA NO MOBILE */
+            #news-section-bg { padding: 25px 0 35px 0 !important; }
+            
+            .news-title-container { 
+                text-align: left !important; 
                 padding-left: 10% !important; 
-                font-size: 2.2em !important;
-                margin-bottom: 15px !important;
-                border-bottom: none !important;
+                margin-bottom: 15px !important; 
             }
-            #news-section-bg h2::after { content: ''; display: block; width: 40px; height: 4px; background: var(--cor-primaria); position: absolute; margin-top: 35px; }
+
+            #news-section-bg h2 { 
+                font-size: 2.2em !important; 
+                margin-bottom: 0 !important; 
+                border-bottom: none !important;
+                display: block !important;
+            }
+            
+            /* Linha vermelha manual por baixo do h2 no mobile */
+            .news-title-container::after {
+                content: '';
+                display: block;
+                width: 45px;
+                height: 4px;
+                background: var(--cor-primaria);
+                margin-top: 5px;
+            }
 
             .news-grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 10% 5px 10%; gap: 20px; -webkit-overflow-scrolling: touch; }
             .news-grid::-webkit-scrollbar { display: none; }
@@ -162,7 +183,9 @@
     </section>
 
     <section id="news-section-bg">
-        <h2>Notícias</h2>
+        <div class="news-title-container">
+            <h2>Notícias</h2>
+        </div>
         <div class="news-grid" id="newsGrid">
             <div class="news-card-wrapper"><div class="news-card-mini"><div class="news-image-container"><img src="NEW1.jpg"></div><div class="news-content"><span class="news-tag">Comunicado Oficial</span><h3>UMA NOVA ETAPA</h3><p style="color:#888; font-size:0.9em; font-weight:700;">9 DE JANEIRO, 2026</p></div></div></div>
             <a href="resultados.html" class="news-card-wrapper"><div class="news-card-mini"><div class="news-image-container"><img src="NEW2CROP.png"></div><div class="news-content"><span class="news-tag">Notícia</span><h3>Resultados da Semana [11-17 Jan]</h3><p style="color:#888; font-size:0.9em; font-weight:700;">18 DE JANEIRO, 2026</p></div></div></a>
@@ -238,7 +261,7 @@
                 } else {
                     grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
                 }
-            }, 3000);
+            }, 3000); // 3 SEGUNDOS
         }
 
         grid.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
@@ -247,7 +270,7 @@
         function scrollToLatest() {
             if (window.innerWidth <= 1000) {
                 setTimeout(() => {
-                    grid.scrollLeft = grid.scrollWidth;
+                    grid.scrollLeft = 0; 
                     updateProgressBar();
                     startAutoScroll();
                 }, 400);
