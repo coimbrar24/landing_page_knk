@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Semana [19-25 Jan] - Kave Ne Kadas</title>
+    
+    <link rel="icon" type="image/png" href="AVA_KNK.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cor-primaria: #e60000; 
+            --cor-fundo-dark: #0a0a0a;
+            --cor-texto: #FFFFFF;
+            --font-titulo: 'Bebas Neue', sans-serif;
+            --font-corpo: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-corpo);
+            background: 
+                radial-gradient(circle at top right, rgba(230, 0, 0, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                var(--cor-fundo-dark);
+            background-attachment: fixed;
+            color: var(--cor-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            position: sticky; 
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        header:hover {
+            background-color: #FFFFFF; 
+            backdrop-filter: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo-wrapper { position: relative; height: 60px; width: 120px; }
+        .logo-wrapper img { height: 60px; width: auto; position: absolute; left: 0; top: 0; transition: opacity 0.4s ease; }
+        .logo-dark { opacity: 0; } 
+        header:hover .logo-white { opacity: 0; }
+        header:hover .logo-dark { opacity: 1; }
+        
+        nav { flex: 2; display: flex; justify-content: center; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin: 0 25px; }
+        nav ul li a { 
+            color: white; 
+            font-size: 1.3em; 
+            text-decoration: none; 
+            font-family: var(--font-titulo);
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.4s ease;
+        }
+        header:hover nav ul li a { color: #000; }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--cor-primaria);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        nav ul li a:hover::after { width: 100%; }
+
+        /* --- CONTEÚDO DA NOTÍCIA --- */
+        .page-content {
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            color: var(--cor-primaria);
+            text-decoration: none;
+            font-family: var(--font-titulo);
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+        .btn-voltar:hover { transform: translateX(-5px); color: #fff; }
+
+        .main-img { 
+            width: 100%; 
+            border-radius: 4px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+            display: block;
+        }
+        
+        .meta-info { margin-top: 30px; }
+        .tag { color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-titulo); font-size: 1.2em; }
+        .date { color: #888; font-size: 0.9em; margin-left: 15px; font-weight: 600; }
+        
+        h1 { font-family: var(--font-titulo); font-size: clamp(2.5em, 8vw, 4em); line-height: 0.9; margin: 20px 0; letter-spacing: 1px; text-transform: uppercase; }
+        .content-body { font-size: 1.15em; color: #ccc; }
+        .content-body p { margin-bottom: 25px; }
+        
+        footer { 
+            background: transparent;
+            padding: 40px 5% 60px 5%; 
+            text-align: center; 
+            border-top: none;
+        }
+        footer p { opacity: 0.3; font-size: 0.75em; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper">
+            <img src="AVA_KNK.png" alt="KNK White" class="logo-white">
+            <img src="AVA_KNK_dark.png" alt="KNK Dark" class="logo-dark">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html#news-section-bg">Notícias</a></li>
+                <li><a href="index.html#main-content">Equipa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <a href="index.html" class="btn-voltar">← VOLTAR AO INÍCIO</a>
+
+        <img src="NEW3CROP.png" alt="Resultados da Semana Atual" class="main-img">
+        
+        <div class="meta-info">
+            <span class="tag">Notícia</span>
+            <span class="date">25 DE JANEIRO, 2026</span>
+        </div>
+
+        <h1>Resultados da Semana [19-25 de Janeiro]</h1>
+
+        <div class="content-body">
+            <p>A semana começou da melhor forma para a Kave Ne Kadas. No primeiro confronto, frente aos <strong>dyyou band</strong>, a equipa apresentou uma exibição muito sólida em Mirage, impondo-se taticamente e garantindo uma vitória convincente por 13-7.</p>
+            
+            <p>No segundo jogo, diante da <strong>ARBOLIT Gaming</strong>, o desfecho já não foi o desejado. Em Dust2, a equipa sentiu dificuldades, com alguma falta de sinergia e protocolos mal executados, o que acabou por se refletir no resultado final, com uma derrota por 13-9.</p>
+            
+            <p>Apesar do balanço misto, a Kave Ne Kadas retira aprendizagens importantes da semana, ciente dos aspetos a melhorar, especialmente na Dust2, mas continua confiante nos seus jogadores e na qualidade individual que vem sendo demonstrada.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 KAVE NE KADAS. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
