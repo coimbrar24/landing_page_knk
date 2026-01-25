@@ -90,6 +90,10 @@
         .news-tag { color: var(--cor-primaria); font-size: 1em; display: block; margin-bottom: 5px; font-weight: 900; }
         .news-content h3 { font-size: 1.8em; margin: 0 0 10px 0; line-height: 1.1; color: #000; }
 
+        /* INDICADOR DE SCROLL MANUAL */
+        .scroll-indicator-container { display: none; width: 60%; height: 4px; background: #eee; margin: 20px auto 0; border-radius: 10px; overflow: hidden; }
+        .scroll-indicator-bar { width: 0%; height: 100%; background: var(--cor-primaria); transition: width 0.1s ease-out; }
+
         /* --- EQUIPA --- */
         #main-content { padding: 80px 5%; text-align: center; }
         .roster-container { background-color: rgba(15, 15, 15, 0.9); padding: 60px 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
@@ -103,7 +107,7 @@
         .social-link svg { width: 28px; height: 28px; fill: #666; transition: 0.3s; }
         .social-link:hover svg { fill: var(--cor-primaria); }
 
-        /* --- MOBILE CORREÇÕES --- */
+        /* --- MOBILE --- */
         @media (max-width: 1000px) {
             nav.desktop-nav { display: none; }
             .menu-toggle { display: flex; }
@@ -112,27 +116,14 @@
             .hero-video { order: 0; }
 
             .news-grid { 
-                display: flex !important; 
-                overflow-x: auto; 
-                scroll-snap-type: x mandatory; 
-                padding: 0 10% 30px 10%; /* Padding inferior para a barra */
-                gap: 20px; 
-                -webkit-overflow-scrolling: touch;
+                display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; 
+                padding: 0 10% 10px 10%; gap: 20px; -webkit-overflow-scrolling: touch;
             }
-            
-            /* INDICATIVO VISUAL (BARRA DE SCROLL) NO MOBILE */
-            .news-grid::-webkit-scrollbar { 
-                height: 4px; /* Barra fininha */
-                display: block; /* Garante que aparece */
-            }
-            .news-grid::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; margin: 0 15%; }
-            .news-grid::-webkit-scrollbar-thumb { background: var(--cor-primaria); border-radius: 10px; }
+            .news-grid::-webkit-scrollbar { display: none; } /* Esconde a do sistema */
+            .scroll-indicator-container { display: block; } /* Mostra a nossa barra personalizada */
             
             .news-card-wrapper { 
-                min-width: 75vw; 
-                max-width: 320px; 
-                scroll-snap-align: center; 
-                flex-shrink: 0; 
+                min-width: 75vw; max-width: 320px; scroll-snap-align: center; flex-shrink: 0; 
             }
             .news-image-container { height: 180px; }
             .news-content h3 { font-size: 1.5em; }
@@ -212,6 +203,9 @@
                 </div>
             </a>
         </div>
+        <div class="scroll-indicator-container">
+            <div class="scroll-indicator-bar" id="scrollBar"></div>
+        </div>
     </section>
 
     <main id="main-content">
@@ -259,10 +253,19 @@
             } catch (e) {}
         }
 
-        // Funcao para iniciar o scroll no fim (N3) no Mobile
+        // GESTÃO DO SCROLL E DA BARRA DE INDICATIVO
+        const grid = document.getElementById('newsGrid');
+        const scrollBar = document.getElementById('scrollBar');
+
+        grid.addEventListener('scroll', () => {
+            const scrollTotal = grid.scrollWidth - grid.clientWidth;
+            const scrollCurrent = grid.scrollLeft;
+            const progress = (scrollCurrent / scrollTotal) * 100;
+            scrollBar.style.width = progress + '%';
+        });
+
         function scrollToLatest() {
             if (window.innerWidth <= 1000) {
-                const grid = document.getElementById('newsGrid');
                 setTimeout(() => {
                     grid.scrollLeft = grid.scrollWidth;
                 }, 300);
