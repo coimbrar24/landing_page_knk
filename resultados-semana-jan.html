@@ -28,144 +28,166 @@
             line-height: 1.6;
         }
 
+        /* --- HEADER (IGUAL AO INDEX) --- */
         header {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(230, 0, 0, 0.3);
+            padding: 0 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; 
+            top: 0; height: 80px; z-index: 2000; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.4); transition: 0.4s ease;
         }
+        header:hover { background-color: #FFFFFF; }
+        
+        .logo-wrapper { position: relative; height: 50px; width: 100px; z-index: 2100; }
+        .logo-wrapper img { height: 50px; width: auto; position: absolute; left: 0; top: 0; transition: opacity 0.4s ease; }
+        .logo-dark { opacity: 0; } 
+        header:hover .logo-white { opacity: 0; }
+        header:hover .logo-dark { opacity: 1; }
+        
+        nav.desktop-nav { display: block; flex-grow: 1; }
+        nav.desktop-nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav.desktop-nav ul li { margin: 0 25px; }
+        nav.desktop-nav ul li a { color: white; font-size: 1.4em; text-decoration: none; font-family: var(--font-titulo); position: relative; transition: color 0.4s; }
+        header:hover nav.desktop-nav ul li a { color: #000; }
 
-        .back-link {
-            color: white;
-            text-decoration: none;
-            font-family: var(--font-titulo);
-            font-size: 1.4em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
+        /* Menu Toggle (Hambúrguer) */
+        .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2100; }
+        .menu-toggle span { width: 30px; height: 3px; background-color: white; transition: 0.4s; }
+        header:hover .menu-toggle span { background-color: black; }
+        .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        .mobile-nav {
+            position: fixed; top: -100%; left: 0; width: 100%; height: auto; background-color: rgba(0,0,0,0.98); 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; transition: top 0.5s;
+            z-index: 1500; padding: 100px 0 50px 0; backdrop-filter: blur(15px);
         }
+        .mobile-nav.active { top: 0; }
+        .mobile-nav a { color: white; font-family: var(--font-titulo); font-size: 2.2em; text-decoration: none; margin: 10px 0; }
 
-        .back-link:hover { color: var(--cor-primaria); }
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1400; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
 
+        /* --- CONTEÚDO --- */
         .container {
             max-width: 900px;
-            margin: 60px auto;
+            margin: 40px auto 60px auto;
             padding: 0 5%;
         }
 
-        .news-header {
-            margin-bottom: 40px;
+        .back-btn-wrapper { margin-bottom: 20px; }
+        .back-link {
+            color: var(--cor-primaria);
+            text-decoration: none;
+            font-family: var(--font-titulo);
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
+        .back-link:hover { color: white; padding-left: 5px; }
 
         .news-header span {
             color: var(--cor-primaria);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 0.9em;
         }
 
         .news-header h1 {
             font-family: var(--font-titulo);
-            font-size: clamp(3em, 6vw, 5em);
-            margin: 10px 0;
-            line-height: 1;
+            font-size: clamp(2.5em, 6vw, 4.5em);
+            margin: 10px 0 30px 0;
+            line-height: 0.9;
         }
 
         .main-image {
             width: 100%;
             border: 1px solid rgba(230, 0, 0, 0.3);
+            border-radius: 4px;
             margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .content {
-            font-size: 1.1em;
-            color: #ccc;
-        }
+        .content { font-size: 1.15em; color: #ccc; }
 
         .match-card {
             background: rgba(255, 255, 255, 0.05);
             border-left: 5px solid var(--cor-primaria);
-            padding: 20px;
+            padding: 25px;
             margin: 30px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .match-info h4 {
-            margin: 0;
-            color: #888;
-            font-size: 0.8em;
-            text-transform: uppercase;
-        }
-
-        .match-info h3 {
-            margin: 5px 0 0 0;
-            font-size: 1.8em;
-            font-family: var(--font-titulo);
-        }
-
-        .match-score {
-            font-family: var(--font-titulo);
-            font-size: 2.5em;
-            color: var(--cor-primaria);
-        }
+        .match-info h4 { margin: 0; color: #888; font-size: 0.8em; text-transform: uppercase; }
+        .match-info h3 { margin: 5px 0 0 0; font-size: 1.8em; font-family: var(--font-titulo); color: white; }
+        .match-score { font-family: var(--font-titulo); font-size: 2.8em; color: var(--cor-primaria); }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-top: 40px;
+            margin-top: 50px;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 40px;
         }
 
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
+        .stat-value { display: block; font-family: var(--font-titulo); font-size: 3.5em; line-height: 1; color: white; }
+        .stat-label { color: #888; font-size: 0.9em; text-transform: uppercase; }
 
-        .stat-value {
-            display: block;
-            font-family: var(--font-titulo);
-            font-size: 3em;
-            line-height: 1;
-        }
+        footer { text-align: center; padding: 60px 0; opacity: 0.3; font-size: 0.75em; }
 
-        .stat-label {
-            color: #888;
-            font-size: 0.9em;
-            text-transform: uppercase;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            opacity: 0.4;
-            font-size: 0.8em;
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 1000px) {
+            nav.desktop-nav { display: none; }
+            .menu-toggle { display: flex; }
         }
 
         @media (max-width: 600px) {
-            .match-card { flex-direction: column; text-align: center; gap: 15px; }
+            .match-card { flex-direction: column; text-align: center; gap: 10px; }
+            .news-header h1 { font-size: 2.8em; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="back-link">← VOLTAR AO INÍCIO</a>
+    <header id="mainHeader">
+        <div class="logo-wrapper">
+            <img src="AVA_KNK.png" alt="KNK White" class="logo-white">
+            <img src="AVA_KNK_dark.png" alt="KNK Dark" class="logo-dark">
+        </div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html#news-section-bg">Notícias</a></li>
+                <li><a href="index.html#main-content">Equipa</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" onclick="toggleMenu()">Início</a>
+        <a href="index.html#news-section-bg" onclick="toggleMenu()">Notícias</a>
+        <a href="index.html#main-content" onclick="toggleMenu()">Equipa</a>
+    </nav>
+
     <div class="container">
+        <div class="back-btn-wrapper">
+            <a href="index.html" class="back-link">← VOLTAR</a>
+        </div>
+
         <div class="news-header">
             <span>Resultados de 25 a 31 de Janeiro</span>
             <h1>DOMÍNIO ABSOLUTO NO SERVIDOR</h1>
         </div>
 
-        <img src="NEW4.png" class="main-image" alt="KNK Vitória">
+        <img src="NEW3CROP.png" class="main-image" alt="KNK Vitória">
 
         <div class="content">
             <p>A <strong>Kave Ne Kadas</strong> contou com uma semana vitoriosa, marcada por duas exibições de alto nível que demonstraram a excelente forma da equipa neste início de ano.</p>
@@ -178,7 +200,7 @@
                 <div class="match-score">14 - 04</div>
             </div>
 
-            <p>No primeiro encontro, a equipa entrou focada e com a confiança em alta. Impondo o seu ritmo de jogo desde o primeiro minuto, a KNK não deu espaço de manobra ao adversário, garantindo uma vitória expressiva por 14-4.</p>
+            <p>No primeiro encontro, a equipa entrou focada e com a confiança em alta. Impondo o seu ritmo de jogo desde o primeiro minuto, a KNK não deu espaço de manobra ao adversário, garantindo uma vitória expressiva.</p>
 
             <div class="match-card">
                 <div class="match-info">
@@ -188,7 +210,7 @@
                 <div class="match-score">13 - 03</div>
             </div>
 
-            <p>No segundo confronto da semana, a história repetiu-se mas com contornos ainda mais dominantes. A primeira metade foi um autêntico monólogo, com a KNK a fechar o lado com um <strong>esmagador 12-0</strong>. Após a troca de lados, a equipa geriu a vantagem com inteligência e fechou o mapa em 13-3.</p>
+            <p>No segundo confronto da semana, a história repetiu-se mas com contornos ainda mais dominantes. A primeira metade foi um autêntico monólogo, com a KNK a fechar o lado com um <strong>esmagador 12-0</strong>.</p>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -204,8 +226,6 @@
                     <span class="stat-label">Últimos 6 Jogos</span>
                 </div>
             </div>
-
-            <p style="margin-top: 40px;">Com este balanço, a equipa reforça a sua posição na tabela e foca-se agora nos treinos da próxima semana para manter esta senda de vitórias. Obrigado a todos pelo apoio!</p>
         </div>
     </div>
 
@@ -213,6 +233,16 @@
         &copy; 2026 KAVE NE KADAS. Todos os direitos reservados.
     </footer>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mobileNav');
+            const toggle = document.getElementById('menuToggle');
+            const overlay = document.getElementById('menuOverlay');
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+        }
+    </script>
 </body>
-
 </html>
